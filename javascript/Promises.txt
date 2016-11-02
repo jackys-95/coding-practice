@@ -1,0 +1,49 @@
+Promises (From the Udacity Course)
+-Different form of Async handling (Promise objects are for asynchronous or deferred computation -MDN)
+-Async events examples:
+-- Network requests, events, threads...
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+-Callback vs Promise
+--Recall: Callback is a function that is to be executed after an another function, commonly used in async functions.
+--Error handling in callbacks... What happens when an error occurs in a function? Do you call the callback? What input does the callback take? Also, depending on what the error is, wouldn't you want this to change? 
+--N.B: Node utilizes error first callbacks
+
+--Promises are the future result of some asynchronous action. 
+--They return values (promise states) like synchronous methods.
+--They are designed to handle errors.
+---http://stackoverflow.com/questions/22539815/arent-promises-just-callbacks
+
+--They can be considered syntactic sugar because you can implement it using 
+---http://softwareengineering.stackexchange.com/questions/302455/is-there-really-a-fundamental-difference-between-callbacks-and-promises
+
+-Callback vs Then
+--Pyramid of Doom: Nested callbacks...
+--https://cdn-images-1.medium.com/max/549/1*3lEILqKvoasyVwpdlfVvbw.png
+--Promises let us do this in a cleaner way.
+
+Workflow
+-Wrapping: Construct a Promise obj
+-Thenning: Desired behaviour occurs -> do x
+-Catching: Something else happened? -> do y
+-Chaining: Chaining together the previous three to implement complex async operation
+
+States of Promise
+-Fulfilled (Resolved): Action related to Promise succeeded
+-Rejected: Action related to Promise failed
+-Pending: waiting for conclusion of action
+-Settled: Promise is either fulfilled or rejected
+
+Interesting use of Promises
+-Event Listeners
+--When you set an event listener to catch event that already has fired, nothing will happen.
+--When you set a Promise, the code the will run when the Promise action has resolved.
+--Difference: Events can be fired multiple times and the listener can do something, but a Promise can only be resolved once.
+
+Promises CAN be blocking.
+-Code in Promise executes in main thread, if it takes a long time then it will block.
+-They can be thought of as try catch blocks around asynchronous code. They define behaviour after async event is completed.
+
+new Promise(resolve, reject)
+-resolve and reject are callbacks
