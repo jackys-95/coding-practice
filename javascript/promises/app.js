@@ -47,14 +47,13 @@ Instructions:
         } else {
           // It failed :(
           // Be nice and reject with req.statusText
-          console.log(Error(req.statusText));
-          reject(req.statusText);
+          reject(Error(req.statusText));
         }
       };
       req.onerror = function() {
         // It failed :(
         // Pass a 'Network Error' to reject
-        reject("Network Error");
+        reject(Error("Network Error"));
       };
       req.send();
     });
@@ -71,8 +70,9 @@ Instructions:
     .then(function(response) {
         addSearchHeader(response);
     })
-    .catch(function(unknown) {
-        addSearchHeader(unknown);
+    .catch(function(error) {
+        addSearchHeader('unknown');
+        console.log(error);
     });
   });
 })(document);
