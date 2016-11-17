@@ -1,11 +1,4 @@
 /*
-Instructions:
-(1) Wrap an XHR in a Promise in the get() function below. See: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
-  (a) Resolve on load and reject on error.
-(2) If the XHR resolves, use addSearchHeader to add the search header to the page.
-(3) If the XHR fails, console.log the error and pass 'unknown' to addSearchHeader
- */
-
 // Inline configuration for jshint below. Prevents `gulp jshint` from failing with quiz starter code.
 /* jshint unused: false */
 
