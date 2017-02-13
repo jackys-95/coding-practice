@@ -1,0 +1,59 @@
+Itinerary
+
+Programming Languages
+-Python as primary language
+-Understand C, Java, a little bit of Assembly and machine language
+-Compilers, syntax, ASTs, programming language theory
+-Functional programming (Scala, Haskell, Racket)
+
+Data structures
+-Graphs
+-Trees
+-Stack, Queue, Linked List
+-Heaps
+-Tries
+
+-Understand motivations, theories, applications, likelihood that problems can be solved by using x DS,
+properties (mathematical ones as well)
+
+Algorithms and Analysis
+-Recursion
+-Runtime complexity
+-BFS, DFS
+-Dijkstra's algorithm
+-Sorting
+--Quick sort
+--Heap sort
+-Dynamic programming
+
+Operating Systems
+-Kernel
+-Processor
+--Schedulers
+--Cycles
+-Memory management
+--Paging, virtual memory, etc.
+
+Networking
+-TCP/IP, UDP
+-Five layers of computer networking...
+
+Logic and Proofs
+-Formal logic properties
+-Proof structure
+
+Simple Mathematics
+-Number systems (binary, decimal, hex)
+-Logarithms (especially base 2)
+
+Discrete Mathematics
+-Induction (weak, strong, structural)
+-Set theory
+
+Statistics
+-Distributions
+-Combinatorics
+
+Literature to Read
+-Elements of Programming Interviews, 2nd ed.
+-Cracking the Coding Interview, 6th ed.
