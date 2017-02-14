@@ -26,6 +26,12 @@ Algorithms and Analysis
 --Heap sort
 -Dynamic programming
 
+Databases
+-Relational algebra
+-SQL and related sub languages (DDL, DML, DCL)
+-NoSQL vs RDBMS
+-Normalization, database theory
+
 Operating Systems
 -Kernel
 -Processor
