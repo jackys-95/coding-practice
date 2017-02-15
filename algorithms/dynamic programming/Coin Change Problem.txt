@@ -1,0 +1,41 @@
+Coin Change Problems
+-Given a set of coins of certain denominations, how can we construct a certain cash amount using the fewest coins?
+
+-Let C[p] be the optimal solution (opt) for p cents.
+C[p] = 1 + C[p - x] (x is value of first coin in opt)
+-First coin implies that order matters? Or eventually the sub-problems will just compute to the same end possibly.
+-Convince yourself that this is true.
+-1 + because you obviously need one coin.
+
+Let's do an example.
+d = {1, 5, 10, 25}
+p = 7
+7 = 1 + 1 + 5
+C[7] = 3
+C[7] = 1 + C[7-1] = 1 + C[6]
+
+C[6] sub problem.
+C[6] = 1 + C[6-x]
+6 = 1 + 5, x = 1
+C[6] = 1 + C[6-1]
+C[6] = 1 + C[5]
+
+C[5] sub problem.
+5 = 5
+C[5] = 1
+
+Bubble up.
+
+C[6] Bubble up.
+C[6] = 1 + C[5]
+C[6] = 1 + 1
+     = 2
+
+C[7] = 1 + C[6]
+     = 1 + 2
+     = 3
+
+Generalize this with a recurrence relation?
+
+C[p] = { min_(i:d_i<=p){C[p - d_i] + 1} if p > 0
+                            0           if p = 0 }
