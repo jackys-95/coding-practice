@@ -39,3 +39,6 @@ Generalize this with a recurrence relation?
 
 C[p] = { min_(i:d_i<=p){C[p - d_i] + 1} if p > 0
                             0           if p = 0 }
+
+Runtime analysis of doing this recursively:
+http://www.cs.bc.edu/~alvarez/Algorithms/Notes/dynamicProgramming.html
