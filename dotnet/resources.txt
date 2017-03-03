@@ -1,0 +1,11 @@
+
+https://msdn.microsoft.com/en-us/library/58a18dwa(v=vs.110).aspx
+
+https://msdn.microsoft.com/en-us/library/system.xml.serialization.xmlnamespacedeclarationsattribute(v=vs.110).aspx
+
+https://stackoverflow.com/questions/35417590/attribute-xmlnamespacedeclarations-is-ignored-during-xml-serialization
+
+https://msdn.microsoft.com/en-us/library/system.xml.serialization.xmlelementattribute(v=vs.110).aspx
+
+https://msdn.microsoft.com/en-us/library/2baksw0z(v=vs.110).aspx
+
