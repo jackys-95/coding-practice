@@ -23,6 +23,21 @@ class BinaryTreeNode:
     def has_right_children(self):
         return not(self.right == None)
 
+    def has_children(self):
+        return self.has_left_children() or self.has_right_children()
+
+    def is_left_child(self):
+        if self.parent is not None:
+            return (True if self.parent.left.value == self.value
+                         else False)
+        return False
+
+    def is_right_child(self):
+        if self.parent is not None:
+            return (True if self.parent.right.value == self.value
+                         else False)
+        return False
+
 class BinaryTree:
     '''
     Represents the root of a Binary Tree
@@ -102,6 +117,54 @@ class BinarySearchTree:
             else:
                 current.left = node
                 node.parent = current
+
+    def delete_node(self, node):
+        '''
+        Deletes a node
+        TODO: needs a refactor
+        '''
+        if not node.has_children():
+            if node.parent is not None:
+                if node.is_left_child():
+                    node.parent.left = None
+                else:
+                    node.parent.right = None
+            else:
+                self.root = None
+        else:
+            successor = self.find_successor(node)
+            if successor is not None:
+                if (node.parent and node.parent.value == successor.value):
+                    node.left.parent = successor
+                    successor.left = node.left
+                else:
+                    if (node.parent and node.parent.value != successor.value):
+                        # fix node parent's references
+                        if node.is_left_child():
+                            node.parent.left = successor
+                        else:
+                            node.parent.right = successor
+                    else: # root is being deleted
+                        self.root = successor
+                    # disconnect successor
+                    if successor.is_left_child():
+                        successor.parent.left = None
+                    else:
+                        successor.parent.right = None
+                    # fix node child's references
+                    if node.has_left_children():
+                        node.left.parent = successor
+                        successor.left = node.left
+                    if (node.has_right_children() and \
+                        node.right.value != successor.value):
+                        node.right.parent = successor
+                        successor.right = node.right
+            else: # promote left child
+                if node.parent is None:
+                    self.root = node.left
+                elif node.is_left_child():
+                    node.parent.left = node.left
+        del node
 
     def find_predecessor(self, node):
         '''
