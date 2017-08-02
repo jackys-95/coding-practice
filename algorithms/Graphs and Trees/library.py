@@ -105,28 +105,74 @@ class BinarySearchTree:
 
     def find_predecessor(self, node):
         '''
-        Incomplete
+        Finds the predecessor of node
         '''
-        if not(node.parent): # root
-            current = node
-            while(current.has_right_children()):
-                current = current.right
-            if (current.has_left_children()):
-                return current.left
+        if not(node.parent): # node is root
+            return find_max_from(node)
+        elif (node.value < node.parent.value):
+            if not(node.has_left_children()):
+                # handle case where node is in right subtree of root
+                if (node.value > self.root.value):
+                    return self.root
+                else:
+                    return None
             else:
-                return current
+                return self.find_max_from(node.left)
         elif (node.value > node.parent.value):
-            if (node.has_left_children()):
-                if (node.left.has_right_children()):
-                    find_max_from(node)
+            if not(node.has_left_children()):
+                # handle case where node is in right subtree of root
+                if (node.value > self.root.value):
+                    return self.root
                 else:
                     return node.parent
-        #elif (node.value < node.parent.value):
+            else:
+                return self.find_max_from(node.left)
 
     def find_max_from(self, node):
         '''
-        Finds the max value starting from a node
+        Finds the max value inside bst
+        starting from node
         '''
+        current = node
+        while(current.has_right_children()):
+            current = current.right
+        return current
+
+    def find_successor(self, node):
+        '''
+        Finds the successor of node
+        '''
+        if not(node.parent): # node is root
+            if not(node.has_right_children()):
+                return None
+            else:
+                return self.find_min_from(node.right)
+        elif (node.value < node.parent.value):
+            if node.has_right_children():
+                if (node.right.has_left_children()):
+                    self.find_min_from(node.right)
+                else:
+                    return node.right
+            else:
+                return node.parent
+        elif (node.value > node.parent.value):
+            if not(node.has_right_children()):
+                if node.parent.parent is None:
+                    return None
+                elif (node.parent.value < node.parent.parent.value):
+                    return node.parent.parent
+            else:
+                return node.right
+
+    def find_min_from(self, node):
+        '''
+        Finds the min value inside bst
+        starting from node
+        '''
+        current = node
+        while(current.has_left_children()):
+            current = current.left
+        return current
     
 def inorder_traversal(root_node):
     if (root_node != None):
@@ -150,8 +196,31 @@ bt = BinaryTree(BinaryTreeNode("A"))
 bt.insert_node_left(BinaryTreeNode("B"))
 bt.insert_node_right(BinaryTreeNode("C"))
 
-bst = BinarySearchTree([70,31,93,94,14,23,73])
+source = [70, 31, 93, 94, 14, 23, 73]
+print(source)
+bst = BinarySearchTree(source)
 child = bst.get_right_child()
 child2 = child.left
-print(bst.find_predecessor(child).value)
-print(bst.find_predecessor(child2).value)
+child3 = bst.find_min_from(bst.root)
+print("Predecessor of " + str(child.value) + " is " + \
+      str(bst.find_predecessor(child).value))
+print("Predecessor of " + str(child2.value) + " is " + \
+      str(bst.find_predecessor(child2).value))
+
+predecessor_child3 = bst.find_predecessor(child3)
+if predecessor_child3 is None:
+    print(str(child3.value) + " has no predecessor")
+
+print("Successor of " + str(child.value) + " is " + \
+      str(bst.find_successor(child).value))
+print("Successor of " + str(child2.value) + " is " + \
+      str(bst.find_successor(child2).value))
+
+child4 = bst.find_max_from(bst.root)
+successor_child4 = bst.find_successor(child4)
+if successor_child4 is None:
+    print(str(child4.value) + " has no successor")
+
+child5 = child3.right
+print("Successor of " + str(child5.value) + " is " + \
+      str(bst.find_successor(child5).value))
