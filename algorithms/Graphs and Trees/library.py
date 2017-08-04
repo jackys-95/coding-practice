@@ -26,6 +26,14 @@ class BinaryTreeNode:
     def has_children(self):
         return self.has_left_children() or self.has_right_children()
 
+    def get_children(self):
+        children = []
+        if self.has_left_children():
+            children.append(self.left)
+        if self.has_right_children():
+            children.append(self.right)
+        return children
+
     def is_left_child(self):
         if self.parent is not None:
             return (True if self.parent.left.value == self.value
@@ -254,3 +262,31 @@ def postorder_traversal(root_node):
         postorder_traversal(root_node.left)
         postorder_traversal(root_node.right)
         print(root_node.value)
+
+from simplequeue import SimpleQueue
+
+def bt_bfs(root_node, value):
+    if (root_node is None):
+        return None
+    else:
+        q = SimpleQueue()
+        q.enqueue(root_node)
+        while q.is_empty() is False:
+            current = q.dequeue()
+            if current.value == value:
+                return current
+            for child in current.get_children():
+                q.enqueue(child)
+    return None
+
+def bt_dfs(node, value):
+    if (node is None):
+        return None
+    elif (node.value == value):
+        return node
+    else:
+        for child in node.get_children():
+            found = bt_dfs(child, value)
+            if found is not None:
+                return found
+    return None

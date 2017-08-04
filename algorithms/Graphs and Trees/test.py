@@ -1,4 +1,4 @@
-from library import BinaryTree, BinaryTreeNode, BinarySearchTree
+from library import BinaryTree, BinaryTreeNode, BinarySearchTree, bt_bfs, bt_dfs
 
 bt = BinaryTree(BinaryTreeNode("A"))
 bt.insert_node_left(BinaryTreeNode("B"))
@@ -7,6 +7,9 @@ bt.insert_node_right(BinaryTreeNode("C"))
 source = [70, 31, 93, 94, 14, 23, 73]
 print(source)
 bst = BinarySearchTree(source)
+
+print(bt_dfs(bst.root, 14).value)
+
 child = bst.get_right_child()
 child2 = child.left
 child3 = bst.find_min_from(bst.root)
