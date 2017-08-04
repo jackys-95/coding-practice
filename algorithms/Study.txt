@@ -40,6 +40,7 @@ Recursion:
 
  Tower of Hanoi
   https://stackoverflow.com/questions/42182799/tower-of-hanoi-recursive-algorithm-for-four-towers-in-python
+  https://stackoverflow.com/questions/3607161/towers-of-hanoi-with-k-pegs
   http://cs.nyu.edu/courses/summer07/G22.2340-001/Presentations/McCann.pdf
 
  Dynamic Programming

@@ -1,12 +1,3 @@
-class Graph:
-    def __init__(self):
-        self.nodes = []
-
-class Node:
-    def __init__(self):
-        self.value = 0
-        self.neighbours = []
-
 class BinaryTreeNode:
     '''
     Represents a node of a Binary Tree.
