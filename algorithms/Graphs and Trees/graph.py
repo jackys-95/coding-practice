@@ -1,6 +1,7 @@
 class Graph:
     '''
     Directed graph which can only contain unique vertices
+    TODO: Connectedness?
     '''
     def __init__(self):
         self.vertices = {}
@@ -35,6 +36,9 @@ class Graph:
                 if vertex_value in self.vertices
                 else None)
 
+    def get_all_vertices(self):
+        return self.vertices
+
 class Vertex:
     '''
     Implementing a vertex with adjacency list and dictionary
@@ -49,3 +53,57 @@ class Vertex:
 
     def get_neighbours(self):
         return self.neighbours
+
+from simplequeue import SimpleQueue
+
+def graph_bfs(graph, value):
+    '''
+    BFS on a connected graph for value
+    '''
+    if graph is None:
+        return
+
+    vertices = graph.get_all_vertices()
+    if len(vertices) == 0:
+        return
+
+    q = SimpleQueue()
+    q.enqueue(vertices[list(vertices.keys())[0]])
+
+    while q.is_empty() is False:
+        current = q.dequeue()
+        if current.value == value:
+            return current
+        for neighbour in current.get_neighbours().values():
+            q.enqueue(neighbour)
+    return None
+
+def graph_dfs(graph, value):
+    '''
+    DFS on a connected graph for value
+    '''
+    if graph is None:
+        return
+
+    vertices = graph.get_all_vertices()
+    if len(vertices) == 0:
+        return
+
+    return _graph_dfs(vertices[list(vertices.keys())[0]], value)
+
+def _graph_dfs(vertex, value):
+    '''
+    Recursive DFS helper
+    '''
+    if vertex is None:
+        return
+    elif vertex.value == value:
+        return vertex
+    elif len(vertex.get_neighbours()) == 0:
+        return
+    else:
+        for neighbour in vertex.get_neighbours().values():
+            found = _graph_dfs(neighbour, value)
+            if found is not None:
+                return found
+    return None
