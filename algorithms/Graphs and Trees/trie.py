@@ -22,9 +22,23 @@ class Trie:
                 current_node = new_node
             else:
                 current_node = current_node.children[token]
+        current_node.is_leaf = True # set the last item to be a leaf
 
     def is_member(self, item):
-        return
+        '''
+        Checks the trie for a certain prefix
+        '''
+        item = item.lower()
+        tokens = list(item)
+        current_node = self.root
+
+        for token in tokens:
+            if token not in current_node.children:
+                return False
+            else:
+                current_node = current_node.children[token]
+
+        return True if current_node.is_leaf_node() else False
 
     def remove(self, item):
         return
@@ -58,7 +72,7 @@ class TrieNode:
         self.children = {}
         self.is_leaf = False
 
-    def is_leaf(self):
+    def is_leaf_node(self):
         return self.is_leaf
 
     def __str__(self):
