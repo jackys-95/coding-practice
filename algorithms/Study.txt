@@ -45,3 +45,8 @@ Recursion:
 
  Dynamic Programming
   Not necessarily recursive
+
+Bit Manipulations
+https://stackoverflow.com/questions/29333689/how-to-find-the-only-number-in-an-array-that-doesnt-occur-twice
+https://stackoverflow.com/questions/7117388/finding-out-the-duplicate-element-in-an-array
+https://stackoverflow.com/questions/37624232/find-the-only-unique-element-in-an-array-of-a-million-elements
