@@ -78,6 +78,42 @@ class MinHeap:
     def __str__(self):
         return str(self.array)
 
+def minimum_nodes(h):
+    '''
+    Recursively calculate the minimum num of nodes for CBT of height h
+    Closed form: 2^k
+    '''
+    if h == 0:
+        return 1
+    else:
+        return maximum_nodes(h - 1) + 1
+
+def maximum_nodes(h):
+    '''
+    Recursively calculate the maximum num of nodes for CBT of height h
+    Closed form: 2^(k + 1) -1
+    '''
+    if h == 0:
+        return 1
+    else:
+        return minimum_nodes(h) + maximum_nodes(h - 1)
+
+def min_heap_sort(array):
+    '''
+    Sort an array of integers using a min-heap
+    '''
+    min_heap = MinHeap(array)
+    for i in range(min_heap.current_size, 1):
+        temp = min_heap[i]
+        min_heap[i] = min_heap[0]
+        min_heap[0] = temp
+        min_heap.current_size -= 1
+        min_heap._heapify(min_heap.array, i)
+
+print(minimum_nodes(2))
+print(maximum_nodes(2))
+print(minimum_nodes(3))
+print(maximum_nodes(3))
+
 x = MinHeap([10, 11, 4, 5, 2, 3, 9])
 print(x)
-
