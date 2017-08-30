@@ -31,7 +31,17 @@ class MinHeap:
         return self.array[0]
 
     def delete_min(self):
-        return
+        '''
+        Deletes the minimum element from the heap
+        '''
+        if self.current_size == 0:
+            return
+        min_value = self.array[0]
+        self.array[0] = self.array[self.current_size - 1]
+        self.array[self.current_size - 1] = min_value
+        self.current_size -= 1
+        self._heapify(self.array, 0)
+        return min_value
 
     def _heapify(self, values, index):
         '''
@@ -76,7 +86,7 @@ class MinHeap:
         return (2 * (index + 1) + 1) - 1
 
     def __str__(self):
-        return str(self.array)
+        return str(self.array[:self.current_size])
 
 def minimum_nodes(h):
     '''
@@ -103,12 +113,12 @@ def min_heap_sort(array):
     Sort an array of integers using a min-heap
     '''
     min_heap = MinHeap(array)
-    for i in range(min_heap.current_size, 1):
-        temp = min_heap[i]
-        min_heap[i] = min_heap[0]
-        min_heap[0] = temp
+    for i in range(min_heap.current_size -1 , 0, -1):
+        min_value = min_heap.array[0]
+        min_heap.array[0] = min_heap.array[i]
+        min_heap.array[i] = min_value
         min_heap.current_size -= 1
-        min_heap._heapify(min_heap.array, i)
+        min_heap._heapify(min_heap.array, 0)
 
 print(minimum_nodes(2))
 print(maximum_nodes(2))
